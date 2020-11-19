@@ -14,7 +14,7 @@ spec:
         app: test-api
     spec:
       containers:
-        - image: pashacodefresh/argocd-test-image:1.9.1
+        - image: pashacodefresh/argocd-test-image:1.9.2
           name: test-api
           ports:
             - containerPort: 1700
