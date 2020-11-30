@@ -15,8 +15,8 @@ spec:
     spec:
       strategy:
         rollingUpdate:
-          maxSurge: 25%
-          maxUnavailable: 25%
+          maxSurge: 5%
+          maxUnavailable: 5%
         type: RollingUpdate
       containers:
         - image: pashacodefresh/argocd-test-image:1.11.2
