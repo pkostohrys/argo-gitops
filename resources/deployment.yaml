@@ -3,6 +3,11 @@ kind: Deployment
 metadata:
   name: test-api
 spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 5%
+      maxUnavailable: 5%
+    type: RollingUpdate
   replicas: 5
   revisionHistoryLimit: 6
   selector:
@@ -13,11 +18,6 @@ spec:
       labels:
         app: test-api
     spec:
-      strategy:
-        rollingUpdate:
-          maxSurge: 5%
-          maxUnavailable: 5%
-        type: RollingUpdate
       containers:
         - image: pashacodefresh/argocd-test-image:1.11.2
           name: test-api
