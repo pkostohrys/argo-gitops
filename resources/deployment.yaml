@@ -27,7 +27,7 @@ spec:
             exec:
               command:
                 - sleep
-                - "60"
+                - "65"
             failureThreshold: 3
             periodSeconds: 10
             successThreshold: 1
