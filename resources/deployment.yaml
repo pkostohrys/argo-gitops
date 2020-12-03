@@ -3,7 +3,12 @@ kind: Deployment
 metadata:
   name: test-api
 spec:
-  replicas: 4
+  strategy:
+    rollingUpdate:
+      maxSurge: 10%
+      maxUnavailable: 15%
+    type: RollingUpdate
+  replicas: 5
   revisionHistoryLimit: 6
   selector:
     matchLabels:
@@ -14,7 +19,16 @@ spec:
         app: test-api
     spec:
       containers:
-        - image: olehzahnitko/argocd:1.2.46
+        - image: pashacodefresh/argocd-test-image:1.11.3
           name: test-api
           ports:
             - containerPort: 1700
+          readinessProbe:
+            exec:
+              command:
+                - sleep
+                - "30"
+            failureThreshold: 3
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
